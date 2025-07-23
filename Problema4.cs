@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,29 +24,25 @@ namespace TesteDeMesa2
             decimal somaTaxa = i + 1;
             decimal fator = 1;
             decimal Anterior = p;
-            decimal saque = 0;
 
             for (int j = 1; j <= mes; j++)
-            { 
+            {
                 Console.Write("Deseja realizar saque? 1 para saque e 0 para continuar: ");
-                int decisao = int.Parse(Console.ReadLine()); ;
+                int decisao = int.Parse(Console.ReadLine());
+
                 if (decisao == 1)
                 {
-                    Console.Write("Digite o valor do saque");
-                    saque = decimal.Parse(Console.ReadLine());
-
+                    Console.Write("Digite o valor do saque: ");
+                    decimal saque = decimal.Parse(Console.ReadLine());
+                    p -= saque;
                 }
-                fator *= somaTaxa;
-                decimal F = p * fator;
-                F = F - saque;
-                decimal rendimentoMensal = F - Anterior;
-                Anterior = F;
 
-                Console.WriteLine($"mês {j} | rendimento: {F:C} | liquido: {rendimentoMensal:C}");
+                decimal rendimento = p * i;
+                p += rendimento;
 
+                Console.WriteLine($"Mês {j} | Rendimento: {rendimento:C} | Saldo total: {p:C}");
             }
-
         }
+    }
+}
 
-    }
-    }
