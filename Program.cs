@@ -24,6 +24,12 @@ namespace TesteDeMesa2
                     case "3":
                         Problema3.Exec();
                         break;
+                    case "4":
+                        Problema4.Exec();
+                        break;
+                    case "5":
+                        Problema5.Exec();
+                        break;
                     case "0":
                         Console.WriteLine("Ssaindoo...");
                         break;
