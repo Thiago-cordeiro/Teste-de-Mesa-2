@@ -12,35 +12,38 @@ namespace TesteDeMesa2
         public static void Exec()
         {
             Console.Write("Digite o valor presente: ");
-            decimal p = decimal.Parse(Console.ReadLine());
+            decimal p = decimal.Parse(Console.ReadLine()); 
 
-            Console.Write("Digite o valor da taxa ao mes em porcentagem: ");
-            decimal i = decimal.Parse(Console.ReadLine());
-            i = i / 100m;
+            Console.Write("Digite o valor da taxa ao mês em porcentagem: ");
+            decimal i = decimal.Parse(Console.ReadLine()); 
+            i = i / 100m; // converter para decimal
 
             Console.Write("Digite quantos meses de investimento: ");
-            int mes = int.Parse(Console.ReadLine()); ;
+            int mes = int.Parse(Console.ReadLine());
 
-            decimal somaTaxa = i + 1;
-            decimal fator = 1;
-            decimal Anterior = p;
+            int mesResgate = 5;
+            decimal valorResgate = 1000;
 
             for (int j = 1; j <= mes; j++)
             {
-                Console.Write("Deseja realizar saque? 1 para saque e 0 para continuar: ");
-                int decisao = int.Parse(Console.ReadLine());
+                decimal rendimento = p * i;
+                decimal valorFuturo = p + rendimento;
+                decimal resgate = 0;
+                decimal saldoFinal = valorFuturo;
 
-                if (decisao == 1)
+                if (j == mesResgate)
                 {
-                    Console.Write("Digite o valor do saque: ");
-                    decimal saque = decimal.Parse(Console.ReadLine());
-                    p -= saque;
+                    resgate = valorResgate;
+                    Console.WriteLine($"Realizando o resgate: {resgate:C} ");
+                    saldoFinal = valorFuturo - resgate;
+                    p = saldoFinal;
+                }
+                else
+                {
+                    p = valorFuturo;
                 }
 
-                decimal rendimento = p * i;
-                p += rendimento;
-
-                Console.WriteLine($"Mês {j} | Rendimento: {rendimento:C} | Saldo total: {p:C}");
+                Console.WriteLine($"Mês {j} | Rendimento: {rendimento:C} | Resgate: {resgate:C} | Saldo acumulado: {saldoFinal:C}");
             }
         }
     }

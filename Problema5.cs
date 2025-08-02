@@ -9,21 +9,25 @@ namespace TesteDeMesa2
 {
     public class Problema5
     {
-        public static void Exec()
-        {
-            decimal saldo = 2000m;
-            decimal taxa = 0.02m;
-            decimal objetivo = 7360.61m;
-            int meses = 0;
+       public static void Exec()
+       {
+            decimal vf = 7390.61m;
+            decimal taxaAnual = 0.02m;
+            int anos = 2;
+            decimal fator = 1;
 
-            while (saldo < objetivo)
+            for (int j = 0; j < anos; j++)
             {
-                saldo *= (1 + taxa);
-                meses++;
-                Console.WriteLine($"Mês {meses}: R$ {saldo:F2}");
+                fator *= (1 + taxaAnual);
             }
 
-            Console.WriteLine($"\nAlcançado em {meses} meses: R$ {saldo:F2}");
-        }
+           decimal vp = vf / fator;
+
+            Console.WriteLine($"Valor Futuro: {vf:C}");
+            Console.WriteLine($"Taxa anual: {taxaAnual:P}");
+            Console.WriteLine($"Tempo: {anos} anos");
+            Console.WriteLine($"Fator (1 + i)^t: {fator:F6}");
+            Console.WriteLine($"Valor Presente necessário: {vp:C}");
+       }
     }
 }

@@ -16,15 +16,17 @@ namespace TesteDeMesa2
             decimal somaTaxa = i + 1;
             decimal fator = 1;
             decimal Anterior = p;
+            decimal liquido = 0;
 
             for (int j = 1; j <= mes; j++)
             {
                 fator *= somaTaxa;
                 decimal F = p * fator;
                 decimal rendimentoMensal = F - Anterior;
+                liquido += rendimentoMensal;
                 Anterior = F;
 
-                Console.WriteLine($"mês {j} | rendimento: {F:C} | liquido: {rendimentoMensal:C}");
+                Console.WriteLine($"mês {j} | rendimento: {F:C} | liquido: {rendimentoMensal:C} | liquido: {liquido:C}");
             }
 
         }
